@@ -11,7 +11,7 @@ function Register() {
     age: "",
     address: ""
   });
-
+  
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
