@@ -1,49 +1,39 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
-function Register() {
-  const navigate = useNavigate();
+function Register({ darkMode }) {
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
     phone: "",
-    age: "",
-    address: ""
+    address: "",
+    city: ""
   });
-  
+
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Get old users or empty array
-    const existingUsers = JSON.parse(localStorage.getItem("userData")) || [];
-
-    // Add new user
-    existingUsers.push(user);
-
-    // Save back to localStorage
-    localStorage.setItem("userData", JSON.stringify(existingUsers));
-
+    localStorage.setItem("userData", JSON.stringify(user));
     alert("Registered Successfully");
-    navigate("/login");
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" onChange={handleChange} required /><br />
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} required /><br />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} required /><br />
-        <input type="text" name="phone" placeholder="Phone" onChange={handleChange} /><br />
-        <input type="number" name="age" placeholder="Age" onChange={handleChange} /><br />
-        <input type="text" name="address" placeholder="Address" onChange={handleChange} /><br />
-        <button type="submit">Register</button>
-      </form>
+    <div className={darkMode ? "dark-mode" : ""} style={{ padding: "50px" }}>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="name" placeholder="Name" onChange={handleChange} required />
+          <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+          <input type="password" name="password" placeholder="Password" required />
+          <input type="text" name="phone" placeholder="Phone" onChange={handleChange} />
+          <input type="text" name="address" placeholder="Address" onChange={handleChange} />
+          <input type="text" name="city" placeholder="City" onChange={handleChange} />
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </div>
   );
 }
