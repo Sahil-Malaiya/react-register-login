@@ -14,7 +14,11 @@ function Login({ darkMode }) {
     e.preventDefault();
     const savedUser = JSON.parse(localStorage.getItem("userData"));
 
-    if (savedUser?.email === loginData.email && savedUser?.name === loginData.name) {
+    if (
+      savedUser?.email === loginData.email &&
+      savedUser?.name.toLowerCase() === loginData.name.toLowerCase()
+    ) {
+      localStorage.setItem("loggedIn", "true"); // FIX
       alert("Login Successful");
       navigate("/dashboard");
     } else {

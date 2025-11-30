@@ -12,7 +12,7 @@ function Profile({ darkMode }) {
     const user = JSON.parse(localStorage.getItem("userData"));
 
     const cardClass = darkMode ? "card-dark" : "card-light";
-
+    
     return (
         <Box sx={{ padding: "50px 0" }}>
             <Typography
